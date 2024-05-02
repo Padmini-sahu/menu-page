@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  .menu-container {
+    max-width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .menu-title {
+    font-size: 32px;
+  }
+  .menu-tabs {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    width: 100%;
+    overflow-x: auto; /* Enable horizontal scrolling on mobile */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    white-space: nowrap; /* Prevent line breaks */
+  }
+  .menu-tab {
+    flex: 1;
+    padding: 10px 20px;
+    background-color: #f0f0f0; /* Adjust background color here */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .menu-tab:hover {
+    background-color: #e0e0e0;
+  }
+  .menu-content {
+    display: none;
+    width: 100%;
+  }
+  .menu-content.active {
+    display: block;
+  }
+  .show-more-tabs {
+    display: none; /* Hide "show more" button by default */
+    padding: 10px;
+    background-color: #f0f0f0; /* Adjust background color here */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+  }
+  .menu-divider {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    margin-top: 20px;
+  }
+  .menu-buttons {
+    display: flex;
+    justify-content: flex-start; /* Align buttons to the left */
+    align-items: center;
+    margin-top: 20px;
+  }
+  .menu-button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    background-color: #f0f0f0; /* Adjust background color here */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  .menu-button:hover {
+    background-color: #e0e0e0;
+  }
+  .egg-button {
+    display: none; /* Hide egg button by default */
+  }
+  .menu-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 20px;
+  }
+  .menu-card {
+    width: calc(20% - 20px); /* Adjust card width */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  .menu-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+  .menu-card-name {
+    margin-top: 10px;
+  }
+  .menu-card-icons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+  .menu-card-icon {
+    margin: 0 3px;
+  }
+  .menu-card-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .menu-card-price {
+    margin-top: 5px;
+    font-weight: bold;
+  }
+</style>
+</head>
+<body>
+<div class="menu-container">
+  <div class="menu-header">
+    <h1 class="menu-title">Menu</h1>
+  </div>
+  <ul class="menu-tabs">
+    <li class="menu-tab" onclick="showTab('specials')">Specials</li>
+    <li class="menu-tab" onclick="showTab('food')">Food</li>
+    <li class="menu-tab" onclick="showTab('beverages')">Beverages</li>
+    <li class="menu-tab" onclick="showTab('desserts')">Desserts</li>
+    <div class="show-more-tabs" onclick="showMoreTabs()">></div>
+  </ul>
+  <div id="specials" class="menu-content">
+    <!-- Specials Content Goes Here -->
+  </div>
+  <div id="food" class="menu-content">
+    <!-- Food Content Goes Here -->
+  </div>
+  <div id="beverages" class="menu-content">
+    <!-- Beverages Content Goes Here -->
+  </div>
+  <div id="desserts" class="menu-content">
+    <!-- Desserts Content Goes Here -->
+  </div>
+  <div class="menu-divider"></div>
+  <div class="menu-buttons">
+    <button class="menu-button veg-button" onclick="showEggButton()">
+      <img src="https://via.placeholder.com/50x50.png/00FF00/FFFFFF?text=Veg" alt="Veg Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Veg
+    </button>
+    <button class="menu-button non-veg-button" onclick="showNonVegButton()">
+      <img src="https://via.placeholder.com/50x50.png/FF0000/FFFFFF?text=Non+Veg" alt="Non Veg Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Non Veg
+    </button>
+    <button class="menu-button egg-button" onclick="showContainsEggButton()">
+      <img src="https://via.placeholder.com/50x50.png/FFFF00/000000?text=Egg" alt="Egg Icon" style="width: 20px; height: 20px; margin-right: 5px;"> Contains Egg
+    </button>
+  </div>
+
+  <div class="menu-cards">
+    <!-- Start of Menu Cards -->
+    <!-- Card 1 -->
+    <div class="menu-card">
+      <img src="https://via.placeholder.com/150" alt="Food Image">
+      <div class="menu-card-icons">
+        <span class="menu-card-icon" style="color: green;">⬤</span>
+      </div>
+      <div class="menu-card-name">Food Name</div>
+      <div class="menu-card-price">Rs 10</div>
+      <button class="menu-card-button">ADD</button>
+    </div>
+    <!-- Card 2 -->
+    <div class="menu-card">
+      <img src="https://via.placeholder.com/150" alt="Food Image">
+      <div class="menu-card-icons">
+        <span class="menu-card-icon" style="color: yellow;">⬤</span>
+      </div>
+      <div class="menu-card-name">Food Name</div>
+      <div class="menu-card-price">Rs 10</div>
+      <button class="menu-card-button">ADD</button>
+    </div>
+    <!-- Card 3 -->
+    <div class="menu-card">
+      <img src="https://via.placeholder.com/150" alt="Food Image">
+      <div class="menu-card-icons">
+        <span class="menu-card-icon" style="color: red;">⬤</span>
+      </div>
+      <div class="menu-card-name">Food Name</div>
+      <div class="menu-card-price">Rs 10</div>
+      <button class="menu-card-button">ADD</button>
+    </div>
+
+    <div class="menu-card">
+        <img src="https://via.placeholder.com/150" alt="Food Image">
+        <div class="menu-card-icons">
+          <span class="menu-card-icon" style="color: green;">⬤</span>
+        </div>
+        <div class="menu-card-name">Food Name</div>
+        <div class="menu-card-price">Rs 10</div>
+        <button class="menu-card-button">ADD</button>
+      </div>
+      <!-- Card 4 -->
+      <div class="menu-card">
+        <img src="https://via.placeholder.com/150" alt="Food Image">
+        <div class="menu-card-icons">
+          <span class="menu-card-icon" style="color: yellow;">⬤</span>
+        </div>
+        <div class="menu-card-name">Food Name</div>
+        <div class="menu-card-price">Rs 10</div>
+        <button class="menu-card-button">ADD</button>
+      </div>
+      <!-- Card 5 -->
+      <div class="menu-card">
+        <img src="https://via.placeholder.com/150" alt="Food Image">
+        <div class="menu-card-icons">
+          <span class="menu-card-icon" style="color: red;">⬤</span>
+        </div>
+        <div class="menu-card-name">Food Name</div>
+        <div class="menu-card-price">Rs 10</div>
+        <button class="menu-card-button">ADD</button>
+      </div>
+   <!-- Card 6 -->
+   
+  </div>
+</div>
+
+<script>
+    function showTab(tabName) {
+      var tabs = document.getElementsByClassName("menu-content");
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove("active");
+      }
+      document.getElementById(tabName).classList.add("active");
+    }
+    
+    function showMoreTabs() {
+      var hiddenTabs = document.querySelectorAll('.menu-tab:nth-child(n+4)');
+      for (var i = 0; i < hiddenTabs.length; i++) {
+        hiddenTabs[i].style.display = "block";
+      }
+      document.querySelector('.show-more-tabs').style.display = "none";
+    }
+  
+    function showEggButton() {
+  var cards = document.getElementsByClassName("menu-card");
+  for (var i = 0; i < cards.length; i++) {
+    var icons = cards[i].getElementsByClassName("menu-card-icon");
+    var hasGreenIcon = false;
+    for (var j = 0; j < icons.length; j++) {
+      if (icons[j].style.color === "green") {
+        hasGreenIcon = true;
+        break;
+      }
+    }
+    if (!hasGreenIcon) {
+      cards[i].style.display = "none";
+    } else {
+      cards[i].style.display = "block";
+    }
+  }
+  document.querySelector('.egg-button').style.display = "block";
+}
+
+function showNonVegButton() {
+  var cards = document.getElementsByClassName("menu-card");
+  for (var i = 0; i < cards.length; i++) {
+    var icons = cards[i].getElementsByClassName("menu-card-icon");
+    var hasRedIcon = false;
+    for (var j = 0; j < icons.length; j++) {
+      if (icons[j].style.color === "red") {
+        hasRedIcon = true;
+        break;
+      }
+    }
+    if (!hasRedIcon) {
+      cards[i].style.display = "none";
+    } else {
+      cards[i].style.display = "block";
+    }
+  }
+  document.querySelector('.egg-button').style.display = "block"; // Show the Contains Egg button
+}
+
+function showContainsEggButton() {
+  var cards = document.getElementsByClassName("menu-card");
+  for (var i = 0; i < cards.length; i++) {
+    var icons = cards[i].getElementsByClassName("menu-card-icon");
+    var hasYellowIcon = false;
+    for (var j = 0; j < icons.length; j++) {
+      if (icons[j].style.color === "yellow") {
+        hasYellowIcon = true;
+        break;
+      }
+    }
+    if (!hasYellowIcon) {
+      cards[i].style.display = "none";
+    } else {
+      cards[i].style.display = "block";
+    }
+  }
+  document.querySelector('.veg-button').style.display = "block"; // Show the Veg button
+  document.querySelector('.non-veg-button').style.display = "block"; // Show the Non Veg button
+}
+
+function showSpecialsTab() {
+  var cards = document.getElementsByClassName("menu-card");
+  for (var i = 0; i < cards.length; i++) {
+    cards[i].style.display = "block";
+  }
+}
+
+</script>
+  
+</body>
+</html>
